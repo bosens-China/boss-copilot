@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.2...new-v3.0.3) (2025-10-14)
+
+
+### Bug Fixes
+
+* update release-please workflow to use tag_name output for asset upload ([8985ea0](https://github.com/bosens-China/boss-copilot/commit/8985ea0ac1e8b8b19aff71ddbc8d9b5571bb8877))
+
 ## [3.0.2](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.1...new-v3.0.2) (2025-10-14)
 
 
