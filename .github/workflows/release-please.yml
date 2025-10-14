@@ -52,6 +52,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          json='${{ needs.release-please.outputs.releases_created }}'
-          tag=$(echo "$json" | jq -r '.[] | select(.component == "new") | .tag_name')
+          tag=$(echo '${{ fromJson(needs.release-please.outputs.releases_created) }}' \
+                | jq -r '.[] | select(.component == "new") | .tag_name')
           gh release upload "$tag" ./dist/boss-copilot.user.js --clobber
