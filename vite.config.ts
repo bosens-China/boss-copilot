@@ -1,77 +1,63 @@
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import UnoCSS from 'unocss/vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
-import { type UserConfig } from 'vite';
-import UnoCSS from 'unocss/vite';
+import monkey, { cdn, util } from 'vite-plugin-monkey';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { $ } from 'zx';
-import * as _ from 'lodash-es';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { plugin as mdPlugin, Mode } from 'vite-plugin-markdown';
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
-
-export function getCurrentGitBranch() {
-  const result = $.sync`git rev-parse --abbrev-ref HEAD`;
-  return `${result}`.trim();
-}
-const TASK: UserConfig = process.env.TASK ? JSON.parse(process.env.TASK) : {};
-
-// vite.config.ts
-// https://vitejs.dev/config/
-export default () => {
-  const config: UserConfig = {
-    define: {
-      __APP_BRANCH__: JSON.stringify(getCurrentGitBranch()),
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    },
-
-    plugins: [
-      vue(),
-      AutoImport({
-        eslintrc: {
-          enabled: true,
-          filepath: './.eslintrc-auto-import.json',
-          globalsPropValue: 'readable',
-        },
-        imports: [
-          'vue',
-          {
-            'naive-ui': [
-              'useDialog',
-              'useMessage',
-              'useNotification',
-              'useLoadingBar',
-            ],
-          },
-        ],
-      }),
-      Components({
-        resolvers: [NaiveUiResolver()],
-      }),
-      UnoCSS(),
-      vueJsx(),
-    ],
-    resolve: {
-      alias: {
-        '@': path.join(__dirname, './src'),
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    mdPlugin({
+      mode: [Mode.VUE],
+    }),
+    vueJsx(),
+    UnoCSS(),
+    AutoImport({
+      eslintrc: {
+        enabled: true,
       },
-    },
-    build: {
-      outDir: './dist/',
-      target: ['es2015'],
-      sourcemap: 'inline',
-      rollupOptions: {
-        external: ['axios'],
-        output: {
-          globals: {
-            axios: 'axios',
-          },
+      dts: true,
+      imports: [
+        'vue',
+        {
+          'naive-ui': [
+            'useDialog',
+            'useMessage',
+            'useNotification',
+            'useLoadingBar',
+          ],
+        },
+        util.unimportPreset,
+      ],
+    }),
+    tsconfigPaths({
+      loose: true,
+    }),
+    Components({
+      dts: true,
+      resolvers: [NaiveUiResolver()],
+    }),
+    monkey({
+      entry: 'src/main.ts',
+      userscript: {
+        icon: 'https://vitejs.dev/logo.svg',
+        namespace: 'npm/vite-plugin-monkey',
+        match: ['https://www.zhipin.com/web/geek/jobs*'],
+        'run-at': 'document-start',
+      },
+      build: {
+        externalGlobals: {
+          vue: cdn.jsdelivr('Vue', 'dist/vue.global.prod.js'),
+          'naive-ui': cdn.jsdelivr('naive-ui', 'dist/index.prod.js'),
+          // https://unpkg.com/naive-ui@2.43.1/dist/index.prod.js
         },
       },
-    },
-  };
-
-  return _.merge(config, TASK);
-};
+    }),
+  ],
+});

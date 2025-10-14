@@ -1,35 +1,33 @@
+import js from '@eslint/js';
 import globals from 'globals';
-import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
-import eslintrcAutoImport from './.eslintrc-auto-import.json' with { type: 'json' };
+import markdown from '@eslint/markdown';
+import { defineConfig } from 'eslint/config';
+import autoImport from './.eslintrc-auto-import.json' with { type: 'json' };
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  { files: ['**/*.{js,mjs,cjs,ts,vue}'] },
-  { languageOptions: { globals: globals.browser } },
+export default defineConfig([
   {
-    languageOptions: eslintrcAutoImport,
+    files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],
+    plugins: { js },
+    extends: ['js/recommended'],
+    languageOptions: { globals: globals.browser },
+    rules: {
+      'no-console': 'warn',
+      'no-debugger': 'warn',
+    },
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...pluginVue.configs['flat/essential'],
+  tseslint.configs.recommended,
+  pluginVue.configs['flat/essential'],
   {
     files: ['**/*.vue'],
-    languageOptions: {
-      parserOptions: {
-        parser: tseslint.parser,
-
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-    },
+    languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   {
-    rules: {
-      'vue/multi-word-component-names': 'off',
-    },
-    ignores: ['./dist/**/*'],
+    files: ['**/*.md'],
+    plugins: { markdown },
+    language: 'markdown/gfm',
+    extends: ['markdown/recommended'],
   },
-];
+  autoImport,
+]);

@@ -1,53 +1,38 @@
 {
-  "name": "boss-outsourcing-tips",
-  "version": "1.1.4",
-  "description": "BOSS直聘外包标注工具，对可能是外包的岗位进行显示提醒。",
-  "type": "module",
+  "name": "boss-copilot",
   "private": true,
-  "author": "yliu",
-  "license": "MIT",
-  "greasemonkey": {
-    "match": "https://www.zhipin.com/job_detail/*",
-    "name": "BOSS直聘-外包标注"
-  },
-  "homepage": "https://github.com/bosens-China/boss-outsourcing-tips",
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsx ./scripts/build.ts",
-    "preview": "vite preview",
-    "test": "vitest"
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.7.9",
-    "lodash-es": "^4.17.21",
-    "naive-ui": "^2.41.0",
-    "seroval": "^1.2.0",
-    "uuid": "^11.0.5",
-    "vue": "^3.5.13",
-    "vue-request": "^2.0.4"
+    "naive-ui": "^2.43.1",
+    "vue": "^3.5.22"
   },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
-    "@iconify-json/bytesize": "^1.2.2",
-    "@types/lodash-es": "^4.17.12",
-    "@unocss/preset-icons": "^65.4.2",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vitejs/plugin-vue-jsx": "^4.1.1",
-    "@vue/tsconfig": "^0.7.0",
-    "eslint": "^9.18.0",
-    "eslint-plugin-vue": "^9.32.0",
-    "globals": "^15.14.0",
-    "prettier": "^3.4.2",
-    "prettier-plugin-lint-md": "^1.0.1",
-    "tsx": "^4.19.2",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.20.0",
-    "unocss": "^65.4.2",
-    "unplugin-auto-import": "^19.0.0",
-    "unplugin-vue-components": "^28.0.0",
-    "vite": "^6.0.5",
-    "vitest": "^3.0.1",
-    "vue-tsc": "^2.2.0",
-    "zx": "^8.3.0"
-  }
+    "@eslint/js": "^9.37.0",
+    "@eslint/markdown": "^7.4.0",
+    "@types/node": "^24.6.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.1.1",
+    "@vue/tsconfig": "^0.8.1",
+    "eslint": "^9.37.0",
+    "eslint-plugin-vue": "^10.5.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.0",
+    "unocss": "^66.5.3",
+    "unplugin-auto-import": "^20.2.0",
+    "unplugin-vue-components": "^29.1.0",
+    "vite": "^7.1.7",
+    "vite-plugin-markdown": "^2.2.0",
+    "vite-plugin-monkey": "^7.1.4",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vue-tsc": "^3.1.0"
+  },
+  "packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd"
 }

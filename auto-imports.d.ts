@@ -7,6 +7,35 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const GM: typeof import('vite-plugin-monkey/dist/client')['GM']
+  const GM_addElement: typeof import('vite-plugin-monkey/dist/client')['GM_addElement']
+  const GM_addStyle: typeof import('vite-plugin-monkey/dist/client')['GM_addStyle']
+  const GM_addValueChangeListener: typeof import('vite-plugin-monkey/dist/client')['GM_addValueChangeListener']
+  const GM_audio: typeof import('vite-plugin-monkey/dist/client')['GM_audio']
+  const GM_cookie: typeof import('vite-plugin-monkey/dist/client')['GM_cookie']
+  const GM_deleteValue: typeof import('vite-plugin-monkey/dist/client')['GM_deleteValue']
+  const GM_deleteValues: typeof import('vite-plugin-monkey/dist/client')['GM_deleteValues']
+  const GM_download: typeof import('vite-plugin-monkey/dist/client')['GM_download']
+  const GM_getResourceText: typeof import('vite-plugin-monkey/dist/client')['GM_getResourceText']
+  const GM_getResourceURL: typeof import('vite-plugin-monkey/dist/client')['GM_getResourceURL']
+  const GM_getTab: typeof import('vite-plugin-monkey/dist/client')['GM_getTab']
+  const GM_getTabs: typeof import('vite-plugin-monkey/dist/client')['GM_getTabs']
+  const GM_getValue: typeof import('vite-plugin-monkey/dist/client')['GM_getValue']
+  const GM_getValues: typeof import('vite-plugin-monkey/dist/client')['GM_getValues']
+  const GM_info: typeof import('vite-plugin-monkey/dist/client')['GM_info']
+  const GM_listValues: typeof import('vite-plugin-monkey/dist/client')['GM_listValues']
+  const GM_log: typeof import('vite-plugin-monkey/dist/client')['GM_log']
+  const GM_notification: typeof import('vite-plugin-monkey/dist/client')['GM_notification']
+  const GM_openInTab: typeof import('vite-plugin-monkey/dist/client')['GM_openInTab']
+  const GM_registerMenuCommand: typeof import('vite-plugin-monkey/dist/client')['GM_registerMenuCommand']
+  const GM_removeValueChangeListener: typeof import('vite-plugin-monkey/dist/client')['GM_removeValueChangeListener']
+  const GM_saveTab: typeof import('vite-plugin-monkey/dist/client')['GM_saveTab']
+  const GM_setClipboard: typeof import('vite-plugin-monkey/dist/client')['GM_setClipboard']
+  const GM_setValue: typeof import('vite-plugin-monkey/dist/client')['GM_setValue']
+  const GM_setValues: typeof import('vite-plugin-monkey/dist/client')['GM_setValues']
+  const GM_unregisterMenuCommand: typeof import('vite-plugin-monkey/dist/client')['GM_unregisterMenuCommand']
+  const GM_webRequest: typeof import('vite-plugin-monkey/dist/client')['GM_webRequest']
+  const GM_xmlhttpRequest: typeof import('vite-plugin-monkey/dist/client')['GM_xmlhttpRequest']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -15,13 +44,16 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getCurrentWatcher: typeof import('vue')['getCurrentWatcher']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const isShallow: typeof import('vue')['isShallow']
   const markRaw: typeof import('vue')['markRaw']
+  const monkeyWindow: typeof import('vite-plugin-monkey/dist/client')['monkeyWindow']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -51,6 +83,7 @@ declare global {
   const toValue: typeof import('vue')['toValue']
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
+  const unsafeWindow: typeof import('vite-plugin-monkey/dist/client')['unsafeWindow']
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -70,6 +103,6 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
+  export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
 }
