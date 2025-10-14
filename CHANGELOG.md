@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.1...new-v3.0.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* update tag extraction method in release-please workflow to use fromJson for improved reliability ([a28eb03](https://github.com/bosens-China/boss-copilot/commit/a28eb0330796be5e6f607fe4ea2613ee39df6ff5))
+
 ## [3.0.1](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.0...new-v3.0.1) (2025-10-14)
 
 
