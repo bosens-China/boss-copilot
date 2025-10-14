@@ -22,6 +22,7 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
           target-branch: main
+          release-as: 2.0.0
 
   build-and-upload:
     needs: release-please
