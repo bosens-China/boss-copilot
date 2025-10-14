@@ -52,4 +52,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ fromJson(needs.release-please.outputs.releases_created)[0].tag_name }} ./dist/boss-copilot.user.js --clobber
+          gh release upload "${{ fromJson(needs.release-please.outputs.releases_created)[0].tag_name }}" \
+                            ./dist/boss-copilot.user.js --clobber
