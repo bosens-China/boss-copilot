@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/bosens-China/boss-copilot/compare/new-vv2.0.1...new-vv2.0.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* improve formatting of release upload command in workflow ([ab32302](https://github.com/bosens-China/boss-copilot/commit/ab3230274520e2bf8e034a720a8c0fad566ddc96))
+
 ## [2.0.1](https://github.com/bosens-China/boss-copilot/compare/new-vv2.0.0...new-vv2.0.1) (2025-10-14)
 
 
