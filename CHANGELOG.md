@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/bosens-China/boss-copilot/compare/new-vv2.0.0...new-vv2.0.1) (2025-10-14)
+
+
+### Bug Fixes
+
+* update README with license, change icon in vite config, and enhance About section with links and styling ([380e89a](https://github.com/bosens-China/boss-copilot/commit/380e89a5e84e7857fe852acecf2046e1267ce703))
+
 ## [2.0.0](https://github.com/bosens-China/boss-copilot/compare/new-vv1.2.4...new-vv2.0.0) (2025-10-14)
 
 
