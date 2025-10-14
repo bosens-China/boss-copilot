@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.0...new-v3.0.1) (2025-10-14)
+
+
+### Bug Fixes
+
+* correct JSON variable handling in release-please workflow for tag extraction ([e0fb246](https://github.com/bosens-China/boss-copilot/commit/e0fb2466bcf3934a28b259cf29466be172d0264f))
+
 ## [3.0.0](https://github.com/bosens-China/boss-copilot/compare/new-v2.0.2...new-v3.0.0) (2025-10-14)
 
 
