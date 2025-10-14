@@ -21,4 +21,4 @@
 
 ## 协议
 
-MTL
+MIT License

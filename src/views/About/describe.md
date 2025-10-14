@@ -13,4 +13,6 @@
 
 另外这个项目现在叫做 boss-copilot 希望它可以成为你的工作助手，最后祝愿工作顺利。
 
-[我的邮箱](mailto:yangboses@gmail.com)
+---
+
+[Github](https://github.com/bosens-China/boss-copilot) | [我的邮箱](mailto:yangboses@gmail.com)

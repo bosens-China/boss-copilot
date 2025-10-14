@@ -46,7 +46,7 @@ export default defineConfig({
     monkey({
       entry: 'src/main.ts',
       userscript: {
-        icon: 'https://vitejs.dev/logo.svg',
+        icon: 'https://static.zhipin.com/favicon.ico',
         namespace: 'npm/vite-plugin-monkey',
         match: ['https://www.zhipin.com/web/geek/jobs*'],
         'run-at': 'document-start',

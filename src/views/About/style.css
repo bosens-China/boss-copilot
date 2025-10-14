@@ -8,3 +8,10 @@
 .my-about a {
   color: var(--n-bar-color);
 }
+
+.my-about hr {
+  margin: 1em 0;
+  border: none;
+  height: 1px;
+  background-color: #72747b5e;
+}
