@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
-      releases_created: ${{ steps.release.outputs.releases_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -51,7 +51,6 @@ jobs:
       - name: Upload Release Asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
         run: |
-          tag=$(echo '${{ fromJson(needs.release-please.outputs.releases_created) }}' \
-                | jq -r '.[] | select(.component == "new") | .tag_name')
-          gh release upload "$tag" ./dist/boss-copilot.user.js --clobber
+          gh release upload "$TAG_NAME" ./dist/boss-copilot.user.js --clobber
