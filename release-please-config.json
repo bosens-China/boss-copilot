@@ -3,7 +3,8 @@
     ".": {
       "release-type": "node",
       "component": "new",
-      "tag-separator": "-v"
+      "include-component-in-tag": true,
+      "tag-separator": "-"
     }
   }
 }
