@@ -15,6 +15,12 @@
 3. 黑名单公司，默认提供了一批常见外包公司，你也可以根据当前角色来对黑名单公司进行添加
 4. 过滤结果，根据过滤的类型来对岗位进行归纳，方便浏览
 
+## 使用方式
+
+1. 安装 [tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+2. 在 [releases](https://github.com/bosens-China/boss-copilot/releases/) 选择以new: xxx开头的tag，例如new: v3.0.4
+3. 点击 boss-copilot.user.js 复制给 tampermonkey 添加脚本
+
 ## 其他
 
 因为插件的运行机制是拦截xhr的请求，所以每次保存或者更改了配置项，都需要下一次请求才能触发。
