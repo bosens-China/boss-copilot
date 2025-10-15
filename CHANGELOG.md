@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.3...new-v3.0.4) (2025-10-15)
+
+
+### Bug Fixes
+
+* 修复作用域冲突，导致脚本无法使用问题。 ([f931028](https://github.com/bosens-China/boss-copilot/commit/f931028f7eac3402b46e51175cb4c01856003fc9))
+
 ## [3.0.3](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.2...new-v3.0.3) (2025-10-14)
 
 
