@@ -14,10 +14,16 @@ broadcast.subscribe<Root>('/wapi/zpgeek/pc/recommend/job/list.json', (data) => {
   filteringPosition(data);
 });
 
-createApp(App).mount(
-  (() => {
-    const app = document.createElement('div');
-    document.body.append(app);
-    return app;
-  })(),
-);
+// 等待 DOM 准备好再挂载 Vue 应用
+const mountApp = () => {
+  const app = document.createElement('div');
+  document.body.append(app);
+  createApp(App).mount(app);
+};
+
+// 如果 body 已经存在，直接挂载；否则等待 DOMContentLoaded
+if (document.body) {
+  mountApp();
+} else {
+  document.addEventListener('DOMContentLoaded', mountApp);
+}
