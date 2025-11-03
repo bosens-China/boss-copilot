@@ -1,4 +1,5 @@
 <script setup lang="tsx">
+import { pagination } from '@/constant/pagination';
 import { getCurrentRoleFilters, type FilterItem } from '@/stores/filter';
 import type { DataTableColumns } from 'naive-ui';
 const tabs = computed(() => {
@@ -101,11 +102,7 @@ const columns = computed<DataTableColumns<FilterItem>>(() => {
       <n-data-table
         :columns="columns"
         :data="tab.data"
-        :pagination="{
-          pageSize: 50,
-          pageSizes: [20, 50, 100, 200],
-          showSizePicker: true,
-        }"
+        :pagination="pagination"
         :bordered="false"
         :row-key="(item) => item.encryptId"
         :max-height="`calc(100vh - 200px)`"

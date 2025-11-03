@@ -6,6 +6,7 @@ import '@/core/hijack-request';
 import { broadcast } from '@/core/broadcast';
 import { type Root } from '@/api/list';
 import { filteringPosition } from './effect/filtering-position/actuator';
+import './effect/add-history';
 
 broadcast.subscribe<Root>('/wapi/zpgeek/search/joblist.json', (data) => {
   filteringPosition(data);

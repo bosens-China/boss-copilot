@@ -2,6 +2,7 @@ import whitelist from './whitelist';
 import blacklist from './blacklist';
 import salary from './salary';
 import city from './city';
+import history from './history';
 import rollingMonitoring from './rolling-monitoring';
 import blacklistCompanies from './blacklist-companies';
 import type { Root } from '@/api/list';
@@ -9,6 +10,7 @@ import { getCurrentPosition } from '@/stores/position';
 import type { FilterItem } from '@/stores/filter';
 
 const actuator = [
+  history,
   rollingMonitoring,
   blacklist,
   whitelist,

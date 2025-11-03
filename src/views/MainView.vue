@@ -4,6 +4,7 @@ import Blacklist from './Blacklist/Blacklist.vue';
 import Filtered from './Filtered.vue';
 import Jobs from './Jobs.vue';
 import Roles from './Roles/Roles.vue';
+import History from './History.vue';
 import { activeTab } from '@/stores/other';
 import { NSelect, NSpace } from 'naive-ui';
 import { roleStore } from '@/stores/role';
@@ -13,6 +14,7 @@ import About from './About/About.vue';
 import Copilot from '@/components/Copilot.vue';
 import { ArrowDownSharp } from '@vicons/ionicons5';
 import { rollingStore } from '@/stores/rolling';
+import { usePostMark } from '@/hooks/usePostMark';
 
 const showOuter = ref(false);
 
@@ -42,6 +44,11 @@ const tabs = [
     component: Filtered,
   },
   {
+    name: 'History',
+    tab: '浏览历史',
+    component: History,
+  },
+  {
     name: 'About',
     tab: '关于',
     component: About,
@@ -67,6 +74,8 @@ const title = (
 );
 
 const message = useMessage();
+
+usePostMark();
 
 /*
  * 监听过滤结果的变化，如果变化了，则隐藏对应的岗位
@@ -148,7 +157,13 @@ const loadAllJobs = () => {
 
   <n-drawer v-model:show="showOuter" :width="800" :auto-focus="false">
     <n-drawer-content :title="(title as any)" closable>
-      <n-tabs type="line" animated placement="left" v-model:value="activeTab">
+      <n-tabs
+        class="copilot-tabs"
+        type="line"
+        animated
+        placement="left"
+        v-model:value="activeTab"
+      >
         <n-tab-pane
           v-for="tab in tabs"
           :key="tab.name"
@@ -161,3 +176,19 @@ const loadAllJobs = () => {
     </n-drawer-content>
   </n-drawer>
 </template>
+
+<style scoped>
+.copilot-tabs {
+  width: 100%;
+  max-width: 100%;
+}
+
+.copilot-tabs :deep(.n-tabs-content) {
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.copilot-tabs :deep(.n-tab-pane) {
+  min-width: 0;
+}
+</style>
