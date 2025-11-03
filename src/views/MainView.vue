@@ -109,6 +109,22 @@ watch(
     if (timer) {
       clearTimeout(timer);
     }
+
+    /*
+     * 滚动需要添加一个异常的判断，假设求职页面根本不存在滚动条，那么我们需要显示给一个dom元素设计很大的高度，然后让其触发滚动事件
+     */
+    const dom = document.body.querySelector(
+      '.job-list-container',
+    ) as HTMLDivElement;
+    const hasVerticalScrollbar =
+      document.documentElement.scrollHeight > window.innerHeight;
+
+    if (!hasVerticalScrollbar) {
+      dom.style.height = window.innerHeight + `1000px`;
+    } else {
+      dom.style.height = 'auto';
+    }
+
     window.scrollTo(0, document.body.scrollHeight);
 
     // 如果超过5s，则认为已加载完成
