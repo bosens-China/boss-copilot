@@ -48,3 +48,10 @@ export const deleteHistory = (encryptId: string) => {
 export const getCurrentRoleHistory = () => {
   return currentRoleHistoryStore.value[roleStore.value.currentRoleId] || {};
 };
+
+/*
+ * 清空当前角色的所有点击记录
+ */
+export const clearCurrentRoleHistory = () => {
+  currentRoleHistoryStore.value[roleStore.value.currentRoleId] = {};
+};

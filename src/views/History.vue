@@ -1,12 +1,15 @@
 <script setup lang="tsx">
 import { pagination } from '@/constant/pagination';
 import {
+  clearCurrentRoleHistory,
   currentRoleHistoryStore,
   deleteHistory,
   type HistoryItem,
 } from '@/stores/history';
 import { roleStore } from '@/stores/role';
 import { NButton, NPopconfirm, NSpace, type DataTableColumns } from 'naive-ui';
+
+const message = useMessage();
 
 const columns: DataTableColumns<HistoryItem> = [
   {
@@ -105,13 +108,31 @@ const data = computed(() => {
     currentRoleHistoryStore.value[roleStore.value.currentRoleId] || {},
   );
 });
+
+const onClearHistory = () => {
+  clearCurrentRoleHistory();
+  message.success('清空成功');
+};
 </script>
 
 <template>
   <div class="w-full min-w-0 overflow-x-hidden">
-    <n-alert title="提示" type="info" class="mb-4">
+    <n-alert title="提示" type="info">
       所有的浏览记录会被储存起来，后续如果遇到相似的岗位会进行颜色的区分
     </n-alert>
+
+    <div class="flex my-4">
+      <div class="flex-1"></div>
+
+      <n-space>
+        <n-popconfirm @positive-click="onClearHistory">
+          <template #trigger>
+            <n-button type="warning">清空浏览历史</n-button>
+          </template>
+          确定清空所有的浏览历史吗？
+        </n-popconfirm>
+      </n-space>
+    </div>
 
     <n-data-table
       class="w-full"
@@ -120,7 +141,7 @@ const data = computed(() => {
       :pagination="pagination"
       :bordered="false"
       :row-key="(item) => item.encryptId"
-      :max-height="`calc(100vh - 380px)`"
+      :max-height="`calc(100vh - 350px)`"
       :scroll-x="scrollX"
     />
   </div>

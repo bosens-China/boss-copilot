@@ -20,6 +20,8 @@ export interface PositionItem {
   city?: string;
   // 开启黑名单公司过滤
   blackCompanyEnabled?: boolean;
+  // 开启浏览历史高亮
+  historyHighlightEnabled?: boolean;
 }
 
 export const positionStore = useLocalSync<Record<string, PositionItem>>(
@@ -38,6 +40,7 @@ export const getCurrentPosition = () => {
     Object.assign(values, {
       enabled: true,
       blackCompanyEnabled: true,
+      historyHighlightEnabled: true,
     });
   }
   return values;

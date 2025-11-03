@@ -6,6 +6,7 @@ import {
   currentRoleHistoryStore,
   getCurrentRoleHistory,
 } from '@/stores/history';
+import { getCurrentPosition, positionStore } from '@/stores/position';
 
 // border: 1px solid #c27474;
 // opacity: 0.85;
@@ -38,8 +39,13 @@ export const postMark = (encryptIds: Array<string>) => {
 
 export const usePostMark = () => {
   watch(
-    () => currentRoleHistoryStore.value,
+    [() => currentRoleHistoryStore.value, () => positionStore.value],
     () => {
+      const currentPosition = getCurrentPosition();
+      // 如果未开启浏览历史高亮，则不进行标记
+      if (!currentPosition.historyHighlightEnabled) {
+        return;
+      }
       const history = getCurrentRoleHistory();
       const encryptIds = Object.keys(history);
       postMark(encryptIds);

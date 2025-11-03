@@ -50,5 +50,8 @@ const formValue = computed(() => {
     <n-form-item label="黑名单公司过滤">
       <n-switch v-model:value="formValue.blackCompanyEnabled" />
     </n-form-item>
+    <n-form-item label="浏览历史高亮">
+      <n-switch v-model:value="formValue.historyHighlightEnabled" />
+    </n-form-item>
   </n-form>
 </template>
