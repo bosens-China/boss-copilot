@@ -50,8 +50,8 @@ export default defineConfig({
       entry: 'src/main.ts',
       userscript: {
         icon: 'https://static.zhipin.com/favicon.ico',
-        namespace: 'npm/vite-plugin-monkey',
-        match: ['https://www.zhipin.com/web/geek/jobs*'],
+        namespace: 'yliu',
+        match: ['https://www.zhipin.com/*'],
         'run-at': 'document-start',
       },
       build: {

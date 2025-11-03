@@ -91,8 +91,15 @@ watch(
 </script>
 
 <template>
-  <n-float-button :right="36" :bottom="200" shape="square">
-    <n-icon @click="doShowOuter">
+  <n-float-button
+    :right="34"
+    :bottom="200"
+    shape="square"
+    @click="doShowOuter"
+    class="z-10"
+    title="boss-copilot 助手，点击开启配置"
+  >
+    <n-icon>
       <Copilot />
     </n-icon>
   </n-float-button>

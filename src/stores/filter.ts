@@ -14,6 +14,8 @@ export interface FilterItem {
   companyName: string;
   // 薪水范围
   salaryRange: string;
+  // 城市名称
+  cityName: string;
 }
 
 export type FilterType =

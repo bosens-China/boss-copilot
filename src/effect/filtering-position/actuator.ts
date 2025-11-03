@@ -10,6 +10,7 @@ import type { FilterItem } from '@/stores/filter';
 const actuator = [blacklist, whitelist, salary, blacklistCompanies, city];
 
 /*
+ * 入口
  * 过滤岗位，通过职责链来封装
  */
 
@@ -20,7 +21,7 @@ export const filteringPosition = (data: Root) => {
   }
 
   for (const job of data.zpData.jobList) {
-    const { brandName, jobName, salaryDesc } = job;
+    const { brandName, jobName, salaryDesc, cityName } = job;
 
     const filterItem: FilterItem = {
       encryptId: job.encryptJobId,
@@ -28,6 +29,7 @@ export const filteringPosition = (data: Root) => {
       url: `https://www.zhipin.com/job_detail/${job.encryptJobId}.html`,
       companyName: brandName,
       salaryRange: salaryDesc,
+      cityName,
     };
 
     for (const fn of actuator) {

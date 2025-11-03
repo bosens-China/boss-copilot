@@ -39,34 +39,59 @@ const tabs = computed(() => {
     },
   ];
 });
+const activeTab = ref('all');
 
-const columns: DataTableColumns<FilterItem> = [
-  {
-    key: 'jobName',
-    title: '岗位名称',
-  },
-  {
-    key: 'companyName',
-    title: '公司名称',
-  },
-  {
-    key: 'salaryRange',
-    title: '薪水范围',
-  },
-  {
-    key: 'url',
-    title: '详情页面',
-    render: (row) => (
-      <a href={row.url} target="_blank">
-        点击跳转
-      </a>
-    ),
-  },
-];
+// 要根据不同的类型，来展示不同的列
+const columns = computed<DataTableColumns<FilterItem>>(() => {
+  const base: DataTableColumns<FilterItem> = [
+    {
+      key: 'jobName',
+      title: '岗位名称',
+    },
+    {
+      key: 'companyName',
+      title: '公司名称',
+    },
+    {
+      key: 'salaryRange',
+      title: '薪水范围',
+    },
+    {
+      key: 'cityName',
+      title: '城市名称',
+    },
+    {
+      key: 'url',
+      title: '详情页面',
+      render: (row) => (
+        <a href={row.url} target="_blank">
+          点击跳转
+        </a>
+      ),
+    },
+  ];
+  switch (activeTab.value) {
+    case 'whiteList':
+    case 'blackList':
+    case 'blackCompany':
+      base.splice(2, 2);
+      break;
+    case 'salaryRange':
+      base.splice(3, 1);
+      break;
+    case 'city':
+      base.splice(2, 1);
+      break;
+    default:
+      break;
+  }
+
+  return base;
+});
 </script>
 
 <template>
-  <n-tabs type="line" animated placement="left">
+  <n-tabs type="line" animated placement="left" v-model:value="activeTab">
     <n-tab-pane
       v-for="tab in tabs"
       :key="tab.name"
@@ -78,10 +103,12 @@ const columns: DataTableColumns<FilterItem> = [
         :data="tab.data"
         :pagination="{
           pageSize: 50,
+          pageSizes: [20, 50, 100, 200],
+          showSizePicker: true,
         }"
         :bordered="false"
         :row-key="(item) => item.encryptId"
-        :max-height="`calc(100vh - 240px)`"
+        :max-height="`calc(100vh - 200px)`"
       />
     </n-tab-pane>
   </n-tabs>
