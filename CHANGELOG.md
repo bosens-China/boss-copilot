@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.1.0](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.4...new-v3.1.0) (2025-11-03)
+
+
+### Features
+
+* enhance job filtering and display with city name and dynamic columns ([8697641](https://github.com/bosens-China/boss-copilot/commit/8697641aeecee35f3bad51ca2a219a574bb87555))
+* 修复滚动加载的逻辑 ([2f7c642](https://github.com/bosens-China/boss-copilot/commit/2f7c642dd6f904f9338944e4ba0aee371c7716df))
+* 新增一键滚动到底部功能 ([3a31a00](https://github.com/bosens-China/boss-copilot/commit/3a31a00014da9c5cb9300cdc0c1e333726c52ee0))
+* 新增浏览记录模块 ([9e5b3ba](https://github.com/bosens-China/boss-copilot/commit/9e5b3baa628dfcff74613d2e396789dcf6573ca6))
+
 ## [3.0.4](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.3...new-v3.0.4) (2025-10-15)
 
 
