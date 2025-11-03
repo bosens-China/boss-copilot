@@ -11,6 +11,8 @@ import { filterStore, getCurrentRoleFilters } from '@/stores/filter';
 import { hiddenPositions } from '@/effect/hidden-positions';
 import About from './About/About.vue';
 import Copilot from '@/components/Copilot.vue';
+import { ArrowDownSharp } from '@vicons/ionicons5';
+import { rollingStore } from '@/stores/rolling';
 
 const showOuter = ref(false);
 
@@ -88,6 +90,37 @@ watch(
   },
   { deep: true, flush: 'post' },
 );
+
+let timer: number | null = null;
+
+// 每次变化的时候，滚动到页面底部
+watch(
+  () => rollingStore.count,
+  () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    window.scrollTo(0, document.body.scrollHeight);
+
+    // 如果超过5s，则认为已加载完成
+    timer = setTimeout(() => {
+      rollingStore.isEnd = true;
+      message.info('已加载完成');
+    }, 5000);
+  },
+  {
+    flush: 'post',
+  },
+);
+
+/*
+ * 模拟滚动，触发分页变化
+ * 分页变化后会触发接口的响应，只有接口变化后，我们才继续滚动
+ */
+const loadAllJobs = () => {
+  rollingStore.count = 1;
+  rollingStore.isEnd = false;
+};
 </script>
 
 <template>
@@ -98,10 +131,19 @@ watch(
     @click="doShowOuter"
     class="z-10"
     title="boss-copilot 助手，点击开启配置"
+    menu-trigger="hover"
   >
     <n-icon>
       <Copilot />
     </n-icon>
+
+    <template #menu>
+      <n-float-button title="一键加载所有岗位" @click="loadAllJobs">
+        <n-icon>
+          <ArrowDownSharp />
+        </n-icon>
+      </n-float-button>
+    </template>
   </n-float-button>
 
   <n-drawer v-model:show="showOuter" :width="800" :auto-focus="false">
