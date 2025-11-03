@@ -124,17 +124,36 @@ watch(
     } else {
       dom.style.height = 'auto';
     }
-
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, Math.floor(document.body.scrollHeight / 2));
+    nextTick(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
 
     // 如果超过5s，则认为已加载完成
     timer = setTimeout(() => {
       rollingStore.isEnd = true;
-      message.info('已加载完成');
     }, 5000);
   },
   {
     flush: 'post',
+  },
+);
+
+watch(
+  () => rollingStore,
+  () => {
+    if (rollingStore.count === 1 || !rollingStore.isEnd) {
+      return;
+    }
+    const dom = document.body.querySelector(
+      '.job-list-container',
+    ) as HTMLDivElement;
+    dom.style.height = 'auto';
+    message.info('已加载完成');
+  },
+  {
+    flush: 'post',
+    deep: true,
   },
 );
 
