@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.2.0](https://github.com/bosens-China/boss-copilot/compare/new-v3.1.0...new-v3.2.0) (2025-11-03)
+
+
+### Features
+
+* 新增历史记录开启关闭功能 ([223a529](https://github.com/bosens-China/boss-copilot/commit/223a529b6e872a36739c214c035456173a8e4528))
+
+
+### Bug Fixes
+
+* 修复一键滚动异常场景下失效问题 ([444ac6b](https://github.com/bosens-China/boss-copilot/commit/444ac6be9cd51800cf140081d20b03b8ffd2ca38))
+
 ## [3.1.0](https://github.com/bosens-China/boss-copilot/compare/new-v3.0.4...new-v3.1.0) (2025-11-03)
 
 
