@@ -5,6 +5,9 @@ on:
   # 在针对 `main` 分支的推送上运行。
   push:
     branches: [main]
+    paths:
+      - 'apps/docs/**'
+      - '.github/workflows/deploy-docs.yml'
 
   # 允许从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
