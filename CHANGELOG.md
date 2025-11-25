@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/bosens-China/boss-copilot/compare/new-v3.2.0...new-v4.0.0) (2025-11-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* 重构项目架构，分离前后端为 Monorepo
+
+### Code Refactoring
+
+* 重构项目架构，分离前后端为 Monorepo ([b0070ae](https://github.com/bosens-China/boss-copilot/commit/b0070aeb036b2dba284b4d03da436a15d35837bf))
+
 ## [3.2.0](https://github.com/bosens-China/boss-copilot/compare/new-v3.1.0...new-v3.2.0) (2025-11-03)
 
 
