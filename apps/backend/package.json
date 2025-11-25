@@ -1,0 +1,11 @@
+{
+  "name": "@boss-copilot/backend",
+  "private": true,
+  "version": "3.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "uv run fastapi dev app/main.py",
+    "start": "uv run fastapi run app/main.py",
+    "export-openapi": "uv run python -m scripts.export_openapi"
+  }
+}

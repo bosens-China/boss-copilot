@@ -23,7 +23,7 @@ jobs:
           manifest-file: .release-please-manifest.json
           target-branch: main
 
-  build-and-upload:
+  build-and-upload-extension:
     needs: release-please
     if: ${{ needs.release-please.outputs.release_created == 'true' }}
     runs-on: ubuntu-latest
@@ -45,12 +45,42 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
+      - name: Build Extension
+        run: pnpm -F @boss-copilot/extension build
 
       - name: Upload Release Asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
         run: |
-          gh release upload "$TAG_NAME" ./dist/boss-copilot.user.js --clobber
+          gh release upload "$TAG_NAME" apps/extension/dist/@boss-copilot/extension.user.js --clobber --name "boss-copilot.user.js"
+
+  build-and-push-backend-docker:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/boss-copilot-backend
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./apps/backend
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/boss-copilot-backend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/boss-copilot-backend:${{ needs.release-please.outputs.tag_name }}
+          labels: ${{ steps.meta.outputs.labels }}

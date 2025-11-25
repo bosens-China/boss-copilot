@@ -1,0 +1,71 @@
+# 构建 VitePress 站点并将其部署到 GitHub Pages 的工作流程
+name: Deploy VitePress site to Pages
+
+on:
+  # 在针对 `main` 分支的推送上运行。
+  push:
+    branches: [main]
+
+  # 允许从 Actions 选项卡手动运行此工作流程
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只允许同时进行一次部署
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 构建工作
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+
+      # 安装 pnpm
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        # 如果 package.json 中配置了 packageManager 字段，会自动读取版本
+        # 也可以显式指定 version: 9
+
+      # 设置 Node.js 环境
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # 安装依赖 (在根目录安装所有 workspace 依赖)
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 构建 VitePress 文档
+      - name: Build with VitePress
+        run: pnpm -F @boss-copilot/docs run docs:build
+
+      # 上传构建产物
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/docs/.vitepress/dist
+
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

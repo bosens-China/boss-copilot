@@ -4,7 +4,17 @@
       "release-type": "node",
       "component": "new",
       "include-component-in-tag": true,
-      "tag-separator": "-"
+      "tag-separator": "-",
+      "extra-files": [
+        "apps/extension/package.json",
+        "apps/backend/package.json",
+        "packages/codegen/package.json",
+        {
+          "type": "toml",
+          "path": "apps/backend/pyproject.toml",
+          "jsonpath": "project.version"
+        }
+      ]
     }
   }
 }

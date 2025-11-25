@@ -1,31 +1,8 @@
-# boss-copilot
+# Boss Copilot
 
-![image](./image.png)
+![bg](./image.png)
 
-最初这个项目的诞生是源于自己找工作用boss直聘的时候想筛选掉一些外包公司，但是随着boss直聘的改版，以及当下求职的时候更多的时候是对岗位的过滤，反而导致最初的功能更不上时代了，所以有了这次新版本的全新的迭代。
-
-当然也介绍下，本次也对项目重新命名了，copilot是最新AI助手非常流行的一个词，希望这个插件也向助手一样来帮助着你。
-
-## 功能介绍
-
-本次迭代引入了多角色的概念，同时功能集中在了列表这一块。
-
-1. 多角色，对于求职多个岗位的小伙伴应该很有帮助
-2. 岗位，支持关键词过滤和筛选，以及薪水与城市的组合筛选，同时在结果列表中动态调整列展示并新增城市列，便于快速对比
-3. 黑名单公司，默认提供了一批常见外包公司，你也可以根据当前角色来对黑名单公司进行添加
-4. 过滤结果，根据过滤的类型来对岗位进行归纳，方便浏览
-5. 一键滚动到底部，快速查看最新岗位或过滤结果
-6. 浏览记录模块，帮助追踪历史查看过的岗位
-
-## 使用方式
-
-1. 安装 [tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-2. 在 [releases](https://github.com/bosens-China/boss-copilot/releases/) 选择以new: xxx开头的tag，例如new: v3.0.4
-3. 点击 boss-copilot.user.js 复制给 tampermonkey 添加脚本
-
-## 其他
-
-因为插件的运行机制是拦截xhr的请求，所以每次保存或者更改了配置项，都需要下一次请求才能触发。
+Boss Copilot 是一个基于 Tampermonkey 的浏览器扩展，专为 Boss 直聘用户设计，提供高级的岗位筛选、管理及浏览记录追踪功能。
 
 ## 协议
 

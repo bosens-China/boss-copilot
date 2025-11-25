@@ -1,0 +1,13 @@
+services:
+  backend:
+    image: boses/boss-copilot-backend:latest
+    container_name: boss-copilot-backend
+    restart: unless-stopped
+    ports:
+      - '8000:8000'
+    environment:
+      # 将数据库路径指向挂载的 data 目录
+      - DB_PATH=/app/data/database.db
+    volumes:
+      # 挂载本地 data 目录到容器内，确保数据持久化
+      - ./data:/app/data
