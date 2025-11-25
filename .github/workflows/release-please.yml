@@ -53,7 +53,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
         run: |
-          gh release upload "$TAG_NAME" apps/extension/dist/@boss-copilot/extension.user.js --clobber --name "boss-copilot.user.js"
+          mv apps/extension/dist/@boss-copilot/extension.user.js boss-copilot.user.js
+          gh release upload "$TAG_NAME" boss-copilot.user.js --clobber
 
   build-and-push-backend-docker:
     needs: release-please
